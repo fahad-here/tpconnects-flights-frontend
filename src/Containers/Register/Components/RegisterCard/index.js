@@ -1,20 +1,24 @@
 import React, { Component } from 'react'
 
-import './login-card.scss'
-import FormValidationSchemas from '../../../../Utils/FormValidationSchemas'
+import './register-card.scss'
 import { Formik } from 'formik'
-import LoginForm from '../../../../Components/Forms/Login'
+import FormValidationSchemas from '../../../../Utils/FormValidationSchemas'
+import RegisterForm from '../../../../Components/Forms/Register'
 import { Card, Col, Container, Row } from 'react-bootstrap'
 
-const { LoginYup } = FormValidationSchemas
+const { RegisterYup } = FormValidationSchemas
 
-export default class LoginCard extends Component {
+export default class RegisterCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            name: '',
             email: '',
             password: '',
-            showPassword: false
+            role: '',
+            confirm: '',
+            showPassword: false,
+            showConfirm: false
         }
     }
 
@@ -23,30 +27,28 @@ export default class LoginCard extends Component {
             showPassword: !this.state.showPassword
         })
 
-    _didLogin = (loginType, prevProps) =>
-        prevProps.app.status[loginType].loading &&
-        !this.props.app.status[loginType].loading &&
-        !this.props.app.status[loginType].error
+    _handleShowConfirm = () =>
+        this.setState({
+            showConfirm: !this.state.showConfirm
+        })
 
-    _didLoadSuccessfully = (prevProps) => this._didLogin('login', prevProps)
-
-    componentDidUpdate = (prevProps) => {
-        if (this._didLoadSuccessfully(prevProps))
+    _closeBaseDialog = () => {
+        this.props.resetDialog('base')
+        if (!this.props.app.status.register.error)
             this.props.history.push('/dashboard')
     }
 
-    _submitAddAccount = async (values, actions) =>
-        await this.props.login(values.email, values.password)
-
-    _closeBaseDialog = () => this.props.resetDialog('base')
+    _submitRegisterAccount = async (values, actions) => {
+        await this.props.register(values.name, values.email, values.password)
+    }
 
     render() {
         return (
             <Container maxWidth='md'>
-                <div className='login-card'>
+                <div className='register-card'>
                     <Row>
                         <Col xs={12}>
-                            <h1>Login</h1>
+                            <h1>Register</h1>
                         </Col>
                     </Row>
                     <Row className='justify-content-md-center'>
@@ -54,14 +56,16 @@ export default class LoginCard extends Component {
                             <Card className='card-outer'>
                                 <Card.Body className='card-inner'>
                                     <Formik
-                                        validationSchema={LoginYup}
+                                        validationSchema={RegisterYup}
                                         onSubmit={console.log}
                                         initialValues={{
                                             email: 'fmohajir@gmail.com',
-                                            password: 'test1234'
+                                            password: 'test1234',
+                                            role: 'Manager',
+                                            name: 'Test'
                                         }}
                                         render={(props) => (
-                                            <LoginForm
+                                            <RegisterForm
                                                 {...props}
                                                 handleShowPassword={
                                                     this._handleShowPassword
@@ -69,17 +73,20 @@ export default class LoginCard extends Component {
                                                 showPassword={
                                                     this.state.showPassword
                                                 }
+                                                showConfirm={
+                                                    this.state.showConfirm
+                                                }
+                                                handleShowConfirm={
+                                                    this._handleShowConfirm
+                                                }
                                             />
                                         )}
                                     />
-
                                     <Row className='justify-content-md-center'>
                                         <Col>
-                                            <p className='go-to-register'>
-                                                Don\'t have an account?{' '}
-                                                <a href='/register'>
-                                                    Register here
-                                                </a>
+                                            <p className='go-to-login'>
+                                                Already have an account?{' '}
+                                                <a href='/login'>Login</a>
                                             </p>
                                         </Col>
                                     </Row>
