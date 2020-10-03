@@ -1,24 +1,23 @@
-import React from 'react'
-import logo from './logo.svg'
+import React, { Fragment } from 'react'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+
+import Home from './Containers/Home'
+
+import NonLoggedInRoute from './Routes/NonLoggedInRoute'
+import LoggedInRoute from './Routes/LoggedInRoute'
 
 function App() {
+    WebSocket.initialize()
     return (
-        <div className='App'>
-            <header className='App-header'>
-                <img src={logo} className='App-logo' alt='logo' />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className='App-link'
-                    href='https://reactjs.org'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
+        <Fragment>
+            <BrowserRouter>
+                <Switch>
+                    <NonLoggedInRoute exact path='/login' component={Home} />
+                    <LoggedInRoute exact component={Home} />
+                    <Route exact path='*' render={() => <Redirect to='/' />} />
+                </Switch>
+            </BrowserRouter>
+        </Fragment>
     )
 }
 
