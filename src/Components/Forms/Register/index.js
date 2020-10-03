@@ -1,8 +1,8 @@
 import React from 'react'
-import { Button, Col, FormControl, Form } from 'react-bootstrap'
+import { Button, Col, Form } from 'react-bootstrap'
 
 const { Control } = Form
-const Login = (props) => {
+const Register = (props) => {
     const {
         isSubmitting,
         handleSubmit,
@@ -13,12 +13,23 @@ const Login = (props) => {
         isValid,
         errors
     } = props
-    console.log(values)
-    console.log(errors)
-    console.log(isValid)
-    console.log(errors.password)
     return (
         <Form noValidate onSubmit={handleSubmit}>
+            <Form.Group as={Col} md='12' controlId='name'>
+                <Form.Label>Full name</Form.Label>
+                <Control
+                    type='text'
+                    name='name'
+                    value={values.name}
+                    onChange={handleChange}
+                    isValid={!errors.name}
+                    isInvalid={!!errors.name}
+                />
+                <Form.Control.Feedback></Form.Control.Feedback>
+                <Form.Control.Feedback type='invalid'>
+                    {errors.name}
+                </Form.Control.Feedback>
+            </Form.Group>
             <Form.Group as={Col} md='12' controlId='email'>
                 <Form.Label>Email</Form.Label>
                 <Control
@@ -49,11 +60,28 @@ const Login = (props) => {
                     {errors.password}
                 </Form.Control.Feedback>
             </Form.Group>
-            <Button className='btn btn-login' type='submit'>
-                Login
+            <Form.Group controlId='role'>
+                <Form.Label>Role</Form.Label>
+                <Form.Control
+                    as='select'
+                    custom
+                    isValid={!errors.role}
+                    isInvalid={!!errors.role}
+                >
+                    <option>Admin</option>
+                    <option>Manager</option>
+                    <option>User</option>
+                </Form.Control>
+                <Form.Control.Feedback></Form.Control.Feedback>
+                <Form.Control.Feedback type='invalid'>
+                    {errors.name}
+                </Form.Control.Feedback>
+            </Form.Group>
+            <Button className='btn btn-register' type='submit'>
+                Register
             </Button>
         </Form>
     )
 }
 
-export default Login
+export default Register
