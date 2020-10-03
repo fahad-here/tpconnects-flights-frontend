@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
-import Home from './Containers/Home'
+import Home from './Containers/Home/HomeContainer'
 
 import NonLoggedInRoute from './Routes/NonLoggedInRoute'
 import LoggedInRoute from './Routes/LoggedInRoute'
