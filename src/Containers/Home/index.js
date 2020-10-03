@@ -5,6 +5,7 @@ import { Container } from 'react-bootstrap'
 import NavBar from '../../Components/NavBar'
 import Footer from '../../Components/Footer'
 import Cover from './Components/Cover'
+import GetStarted from './Components/GetStarted'
 
 class Home extends Component {
     componentDidMount = async () => {}
@@ -16,7 +17,7 @@ class Home extends Component {
             <Container fluid className='home'>
                 <NavBar {...this.props} />
                 <Cover />
-                <h1>Home Pages</h1>
+                <GetStarted />
                 <Footer />
             </Container>
         )
