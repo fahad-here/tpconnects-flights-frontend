@@ -33,7 +33,7 @@ export default class Footer extends Component {
             <footer>
                 <Container fluid>
                     <Row>
-                        <Col xl={{ span: 3, offset: 0 }} col={11}>
+                        <Col xl={{ span: 3, offset: 0 }} col={12}>
                             <Row>
                                 <Col>
                                     <p className='logo'>Tp.Connects</p>

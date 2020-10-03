@@ -1,0 +1,64 @@
+.login .login-card {
+  position: relative;
+  overflow: hidden;
+  z-index: 30;
+  min-height: 60vh;
+  padding: 10vh 0;
+}
+
+.login .login-card .card-outer {
+  box-shadow: rgba(0, 0, 0, 0.06) 0 0 40px !important;
+  border-radius: 4px !important;
+  padding: 1em 5em 1em 5em;
+  border: none !important;
+}
+
+.login .login-card h1 {
+  font-size: 2.5em;
+  font-weight: 300;
+  text-align: center;
+  margin-top: 0 !important;
+  margin-bottom: 1em;
+}
+
+.login .login-card .card-inner {
+  padding: 3vh 0;
+}
+
+.login .login-card .btn-login {
+  width: 100%;
+  color: white;
+  margin: 3em auto 0 auto;
+  display: block;
+  padding: 1em 6em;
+  border-radius: 1em;
+  background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+  transition: 0.2s !important;
+}
+
+.login .login-card .btn-login:hover {
+  transform: scale(1.03) !important;
+  box-shadow: 0 6px 18px 0 rgba(33, 213, 253, 0.5) !important;
+}
+
+.login .login-card img {
+  height: 1.5em;
+  width: 1.5em;
+  filter: invert(.5) sepia(1) saturate(40) hue-rotate(200deg);
+}
+
+.login .login-card img:hover {
+  cursor: pointer;
+}
+
+.login .login-card .go-to-register {
+  margin-top: 2.5em;
+}
+
+.login .login-card .go-to-register {
+  text-align: center;
+}
+
+.login .login-card a:hover {
+  text-decoration: none;
+}

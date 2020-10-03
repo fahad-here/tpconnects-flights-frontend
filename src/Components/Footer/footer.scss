@@ -102,12 +102,10 @@ footer .community img:hover{
   }
 
   footer .logo {
-    float: left;
     margin-top: 5vh;
   }
 
   footer .copyright {
-    float: left;
   }
 }
 
@@ -127,13 +125,15 @@ footer .community img:hover{
   }
 
   footer .logo {
-    float: left;
     margin-top: 5vh;
   }
 }
 
-@media (max-width: 1024px) {
-  footer .copyright {
-    text-align: left;
+@media (max-width: 1200px) {
+  footer .logo{
+    margin: 10px 0;
   }
+  footer .copyright{
+     margin-bottom: 30px ;
+   }
 }

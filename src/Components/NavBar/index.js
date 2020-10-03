@@ -23,7 +23,7 @@ class NavBar extends Component {
     render() {
         return (
             <Navbar
-                fixed='top'
+                sticky='top'
                 collapseOnSelect
                 expand='lg'
                 bg='transparent'
@@ -36,6 +36,8 @@ class NavBar extends Component {
                     <Nav>
                         {!tokenHandler.isLoggedIn() &&
                             this._getLink('Login', 'login')}
+                        {!tokenHandler.isLoggedIn() &&
+                            this._getLink('Register', 'register')}
                         {tokenHandler.isLoggedIn() && (
                             <>
                                 {this._getLink('Dashboard', 'dashboard')}
