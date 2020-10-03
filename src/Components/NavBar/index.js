@@ -22,7 +22,13 @@ class NavBar extends Component {
 
     render() {
         return (
-            <Navbar collapseOnSelect expand='lg' bg='primary' variant='dark'>
+            <Navbar
+                fixed='top'
+                collapseOnSelect
+                expand='lg'
+                bg='transparent'
+                variant='dark'
+            >
                 <Navbar.Brand href='#home'>TpConnects</Navbar.Brand>
                 <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                 <Navbar.Collapse id='responsive-navbar-nav'>
