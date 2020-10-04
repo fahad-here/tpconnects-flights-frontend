@@ -1,5 +1,8 @@
 import { App } from '../../Models'
 import {
+    ADD_NEW_FLIGHT_ERROR,
+    ADD_NEW_FLIGHT_LOADING,
+    ADD_NEW_FLIGHT_SUCCESS,
     GET_FLIGHTS_ERROR,
     GET_FLIGHTS_LOADING,
     GET_FLIGHTS_SUCCESS,
@@ -187,6 +190,19 @@ export default function Reducer(state = App, action) {
         case GET_FLIGHTS_ERROR:
             return {
                 ...state,
+                dialogs: {
+                    ...state.dialogs,
+                    base: {
+                        open: true,
+                        title: 'Error fetching flights',
+                        message: action.payload.response
+                            ? action.payload.response.data.message
+                            : action.payload.message,
+                        htmlMessage: null,
+                        loading: false,
+                        loadingMessage: false
+                    }
+                },
                 status: {
                     ...state.status,
                     getFlights: {
@@ -196,6 +212,69 @@ export default function Reducer(state = App, action) {
                     }
                 },
                 flights: []
+            }
+        case ADD_NEW_FLIGHT_LOADING:
+            return {
+                ...state,
+                status: {
+                    ...state.status,
+                    addNewFlight: {
+                        loading: true,
+                        error: false,
+                        errorMessage: null
+                    }
+                }
+            }
+        case ADD_NEW_FLIGHT_SUCCESS:
+            return {
+                ...state,
+                dialogs: {
+                    ...state.dialogs,
+                    base: {
+                        open: true,
+                        title: 'Add new flight success',
+                        message: action.payload.response
+                            ? action.payload.response.data.message
+                            : action.payload.message,
+                        htmlMessage: null,
+                        loading: false,
+                        loadingMessage: false
+                    }
+                },
+                status: {
+                    ...state.status,
+                    addNewFlight: {
+                        loading: false,
+                        error: false,
+                        errorMessage: null
+                    }
+                },
+                flights: [...state.flights, action.payload]
+            }
+        case ADD_NEW_FLIGHT_ERROR:
+            return {
+                ...state,
+                dialogs: {
+                    ...state.dialogs,
+                    base: {
+                        open: true,
+                        title: 'Error adding new flight',
+                        message: action.payload.response
+                            ? action.payload.response.data.message
+                            : action.payload.message,
+                        htmlMessage: null,
+                        loading: false,
+                        loadingMessage: false
+                    }
+                },
+                status: {
+                    ...state.status,
+                    addNewFlight: {
+                        loading: false,
+                        error: true,
+                        errorMessage: action.payload.message
+                    }
+                }
             }
         case RESET_DIALOG:
             return {

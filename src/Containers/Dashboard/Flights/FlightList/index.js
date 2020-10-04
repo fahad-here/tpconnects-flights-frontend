@@ -23,7 +23,16 @@ export default class FlightList extends Component {
                     </Row>
                     <Row className={'my-4 py-4'}>
                         <Col md={{ offset: 10, number: 2 }}>
-                            <Button className={'mx-4'}>Add Flight</Button>
+                            <Button
+                                className={'mx-4'}
+                                onClick={() =>
+                                    this.props.history.push(
+                                        '/dashboard/flights/new'
+                                    )
+                                }
+                            >
+                                Add Flight
+                            </Button>
                         </Col>
                     </Row>
                     <Row>

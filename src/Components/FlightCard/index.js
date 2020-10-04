@@ -34,7 +34,7 @@ export default class FlightCard extends Component {
                             </p>
                         </Row>
                         <Row className='justify-content-md-center'>
-                            {origin}->{destination}
+                            {origin} --> {destination}
                         </Row>
                     </Col>
                     <Col
@@ -46,7 +46,7 @@ export default class FlightCard extends Component {
                         <Row className='justify-content-sm-center'>
                             <p>
                                 <strong>
-                                    {origin}->{destination}
+                                    {origin} --> {destination}
                                 </strong>
                             </p>
                         </Row>

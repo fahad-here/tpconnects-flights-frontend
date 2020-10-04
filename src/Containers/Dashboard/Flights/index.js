@@ -7,7 +7,7 @@ import Footer from '../../../Components/Footer'
 import './flights.scss'
 import FlightList from './FlightList'
 
-export default class Register extends Component {
+export default class Flights extends Component {
     render() {
         return (
             <div className='flights'>

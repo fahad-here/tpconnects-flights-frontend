@@ -1,6 +1,9 @@
 import API from '../../API'
 import TokenHandler from '../../Utils/TokenHandler'
 import {
+    ADD_NEW_FLIGHT_ERROR,
+    ADD_NEW_FLIGHT_LOADING,
+    ADD_NEW_FLIGHT_SUCCESS,
     GET_FLIGHTS_ERROR,
     GET_FLIGHTS_LOADING,
     GET_FLIGHTS_SUCCESS,
@@ -94,6 +97,38 @@ export const getFlights = () => {
         } catch (e) {
             return dispatch({
                 type: GET_FLIGHTS_ERROR,
+                payload: e
+            })
+        }
+    }
+}
+
+export const newFlight = (
+    origin,
+    destination,
+    departure,
+    arrival,
+    currency,
+    cost
+) => {
+    return async (dispatch) => {
+        dispatch({ type: ADD_NEW_FLIGHT_LOADING })
+        try {
+            const { flight } = await api.newFlight(
+                origin,
+                destination,
+                departure,
+                arrival,
+                currency,
+                cost
+            )
+            return dispatch({
+                type: ADD_NEW_FLIGHT_SUCCESS,
+                payload: flight
+            })
+        } catch (e) {
+            return dispatch({
+                type: ADD_NEW_FLIGHT_ERROR,
                 payload: e
             })
         }

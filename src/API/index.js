@@ -55,6 +55,24 @@ export default class API {
         return (await axios.get(URL, options)).data
     }
 
+    async newFlight(origin, destination, departure, arrival, currency, cost) {
+        const URL = URL_FLIGHTS
+        const body = {
+            origin,
+            destination,
+            departure,
+            arrival,
+            currency,
+            cost
+        }
+        const options = {
+            headers: {
+                Authorization: tokenHandler.get().token
+            }
+        }
+        return (await axios.post(URL, body, options)).data
+    }
+
     async refreshAccess() {
         const URL = `${URL_AUTH}/refresh`
         const options = {

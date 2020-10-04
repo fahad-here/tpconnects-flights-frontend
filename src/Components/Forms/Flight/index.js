@@ -43,7 +43,7 @@ const Flight = (props) => {
                     isInvalid={!!errors.origin}
                     options={airports}
                     onChange={(val1) => setFieldValue('origin', val1.value)}
-                ></Form.Control>
+                />
                 <Form.Control.Feedback></Form.Control.Feedback>
                 <Form.Control.Feedback type='invalid'>
                     {errors.origin}
@@ -60,7 +60,7 @@ const Flight = (props) => {
                     onChange={(val1) =>
                         setFieldValue('destination', val1.value)
                     }
-                ></Form.Control>
+                />
                 <Form.Control.Feedback></Form.Control.Feedback>
                 <Form.Control.Feedback type='invalid'>
                     {errors.origin}
@@ -77,7 +77,7 @@ const Flight = (props) => {
                     onChange={(val1) =>
                         setFieldValue('departure', val1.toDate().toString())
                     }
-                ></Form.Control>
+                />
                 <Form.Control.Feedback></Form.Control.Feedback>
                 <Form.Control.Feedback type='invalid'>
                     {errors.departure}
@@ -94,7 +94,7 @@ const Flight = (props) => {
                     onChange={(val1) =>
                         setFieldValue('arrival', val1.toDate().toString())
                     }
-                ></Form.Control>
+                />
                 <Form.Control.Feedback></Form.Control.Feedback>
                 <Form.Control.Feedback type='invalid'>
                     {errors.arrival}
@@ -124,14 +124,14 @@ const Flight = (props) => {
                     isInvalid={!!errors.currency}
                     options={currencies}
                     onChange={(val1) => setFieldValue('currency', val1.value)}
-                ></Form.Control>
+                />
                 <Form.Control.Feedback></Form.Control.Feedback>
                 <Form.Control.Feedback type='invalid'>
                     {errors.currency}
                 </Form.Control.Feedback>
             </Form.Group>
-            <Button className='btn btn-login' type='submit'>
-                Add
+            <Button className='btn btn-new-flight' type='submit'>
+                {isSubmitting ? 'Loading...' : 'Add new flight'}
             </Button>
         </Form>
     )
