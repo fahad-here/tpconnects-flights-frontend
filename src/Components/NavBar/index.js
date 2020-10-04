@@ -6,16 +6,11 @@ import './navbar.scss'
 import { Nav, Navbar } from 'react-bootstrap'
 const tokenHandler = new TokenHandler()
 
-const URL_LOGOUT = 'logout'
-
 class NavBar extends Component {
-    _isLightNavbar = () => this.props.isLight
-
-    _isActive = (url) => this.props.url === url
-
     _getLink = (name, url) => <Nav.Link href={url}>{name}</Nav.Link>
 
     render() {
+        console.log(this.props.url)
         return (
             <Navbar
                 sticky='top'
@@ -27,8 +22,8 @@ class NavBar extends Component {
                 <Navbar.Brand href='#home'>TpConnects</Navbar.Brand>
                 <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                 <Navbar.Collapse id='responsive-navbar-nav'>
-                    <Nav className='mr-auto'></Nav>
-                    <Nav>
+                    <Nav className='mr-auto'/>
+                    <Nav activeKey={this.props.url}>
                         {!tokenHandler.isLoggedIn() &&
                             this._getLink('Login', 'login')}
                         {!tokenHandler.isLoggedIn() &&

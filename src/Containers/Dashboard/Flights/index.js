@@ -11,7 +11,7 @@ export default class Flights extends Component {
     render() {
         return (
             <div className='flights'>
-                <NavBar url='flights' />
+                <NavBar url='dashboard' />
                 <Cover />
                 <FlightList {...this.props} />
                 <Footer url='flights' />
