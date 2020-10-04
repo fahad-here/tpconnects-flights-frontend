@@ -23,11 +23,7 @@ const Flight = (props) => {
         isSubmitting,
         handleSubmit,
         handleChange,
-        handleSelect,
-        handleBlur,
         values,
-        touched,
-        isValid,
         errors,
         setFieldValue
     } = props
@@ -44,7 +40,7 @@ const Flight = (props) => {
                     options={airports}
                     onChange={(val1) => setFieldValue('origin', val1.value)}
                 />
-                <Form.Control.Feedback></Form.Control.Feedback>
+                <Form.Control.Feedback/>
                 <Form.Control.Feedback type='invalid'>
                     {errors.origin}
                 </Form.Control.Feedback>
@@ -61,7 +57,7 @@ const Flight = (props) => {
                         setFieldValue('destination', val1.value)
                     }
                 />
-                <Form.Control.Feedback></Form.Control.Feedback>
+                <Form.Control.Feedback/>
                 <Form.Control.Feedback type='invalid'>
                     {errors.origin}
                 </Form.Control.Feedback>
@@ -78,7 +74,7 @@ const Flight = (props) => {
                         setFieldValue('departure', val1.toDate().toString())
                     }
                 />
-                <Form.Control.Feedback></Form.Control.Feedback>
+                <Form.Control.Feedback/>
                 <Form.Control.Feedback type='invalid'>
                     {errors.departure}
                 </Form.Control.Feedback>
@@ -95,7 +91,7 @@ const Flight = (props) => {
                         setFieldValue('arrival', val1.toDate().toString())
                     }
                 />
-                <Form.Control.Feedback></Form.Control.Feedback>
+                <Form.Control.Feedback/>
                 <Form.Control.Feedback type='invalid'>
                     {errors.arrival}
                 </Form.Control.Feedback>
@@ -110,7 +106,7 @@ const Flight = (props) => {
                     isValid={!errors.cost}
                     isInvalid={!!errors.cost}
                 />
-                <Form.Control.Feedback></Form.Control.Feedback>
+                <Form.Control.Feedback/>
                 <Form.Control.Feedback type='invalid'>
                     {errors.cost}
                 </Form.Control.Feedback>
@@ -125,7 +121,7 @@ const Flight = (props) => {
                     options={currencies}
                     onChange={(val1) => setFieldValue('currency', val1.value)}
                 />
-                <Form.Control.Feedback></Form.Control.Feedback>
+                <Form.Control.Feedback/>
                 <Form.Control.Feedback type='invalid'>
                     {errors.currency}
                 </Form.Control.Feedback>

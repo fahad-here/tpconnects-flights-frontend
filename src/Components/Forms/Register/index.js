@@ -2,16 +2,7 @@ import React from 'react'
 import { Button, Col, Form } from 'react-bootstrap'
 const { Control } = Form
 const Register = (props) => {
-    const {
-        isSubmitting,
-        handleSubmit,
-        handleChange,
-        handleBlur,
-        values,
-        touched,
-        isValid,
-        errors
-    } = props
+    const { isSubmitting, handleSubmit, handleChange, values, errors } = props
     return (
         <Form noValidate onSubmit={handleSubmit}>
             <Form.Group as={Col} md='12' controlId='name'>
@@ -24,7 +15,7 @@ const Register = (props) => {
                     isValid={!errors.name}
                     isInvalid={!!errors.name}
                 />
-                <Form.Control.Feedback></Form.Control.Feedback>
+                <Form.Control.Feedback/>
                 <Form.Control.Feedback type='invalid'>
                     {errors.name}
                 </Form.Control.Feedback>
@@ -39,7 +30,7 @@ const Register = (props) => {
                     isValid={!errors.email}
                     isInvalid={!!errors.email}
                 />
-                <Form.Control.Feedback></Form.Control.Feedback>
+                <Form.Control.Feedback/>
                 <Form.Control.Feedback type='invalid'>
                     {errors.email}
                 </Form.Control.Feedback>
@@ -54,7 +45,7 @@ const Register = (props) => {
                     isValid={!errors.password}
                     isInvalid={!!errors.password}
                 />
-                <Form.Control.Feedback></Form.Control.Feedback>
+                <Form.Control.Feedback/>
                 <Form.Control.Feedback type='invalid'>
                     {errors.password}
                 </Form.Control.Feedback>
@@ -64,6 +55,7 @@ const Register = (props) => {
                 <Form.Control
                     as='select'
                     custom
+                    value={values.role}
                     isValid={!errors.role}
                     isInvalid={!!errors.role}
                 >
@@ -71,7 +63,7 @@ const Register = (props) => {
                     <option>Manager</option>
                     <option>User</option>
                 </Form.Control>
-                <Form.Control.Feedback></Form.Control.Feedback>
+                <Form.Control.Feedback/>
                 <Form.Control.Feedback type='invalid'>
                     {errors.name}
                 </Form.Control.Feedback>

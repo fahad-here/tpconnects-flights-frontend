@@ -3,16 +3,7 @@ import { Button, Col, Form } from 'react-bootstrap'
 
 const { Control } = Form
 const Login = (props) => {
-    const {
-        isSubmitting,
-        handleSubmit,
-        handleChange,
-        handleBlur,
-        values,
-        touched,
-        isValid,
-        errors
-    } = props
+    const { isSubmitting, handleSubmit, handleChange, values, errors } = props
     return (
         <Form noValidate onSubmit={handleSubmit}>
             <Form.Group as={Col} md='12' controlId='email'>
@@ -25,7 +16,7 @@ const Login = (props) => {
                     isValid={!errors.email}
                     isInvalid={!!errors.email}
                 />
-                <Form.Control.Feedback></Form.Control.Feedback>
+                <Form.Control.Feedback/>
                 <Form.Control.Feedback type='invalid'>
                     {errors.email}
                 </Form.Control.Feedback>
@@ -40,7 +31,7 @@ const Login = (props) => {
                     isValid={!errors.password}
                     isInvalid={!!errors.password}
                 />
-                <Form.Control.Feedback></Form.Control.Feedback>
+                <Form.Control.Feedback/>
                 <Form.Control.Feedback type='invalid'>
                     {errors.password}
                 </Form.Control.Feedback>

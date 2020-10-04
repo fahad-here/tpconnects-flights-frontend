@@ -7,7 +7,6 @@ export default function NonLoggedInRoute({ component: Component, ...rest }) {
             {...rest}
             render={(props) => {
                 if (localStorage.getItem('token') === null) {
-                    console.log('test')
                     const view =
                         props.location.pathname === '/'
                             ? '/login'

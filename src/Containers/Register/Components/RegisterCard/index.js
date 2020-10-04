@@ -13,22 +13,9 @@ export default class RegisterCard extends Component {
             name: '',
             email: '',
             password: '',
-            role: '',
-            confirm: '',
-            showPassword: false,
-            showConfirm: false
+            role: ''
         }
     }
-
-    _handleShowPassword = () =>
-        this.setState({
-            showPassword: !this.state.showPassword
-        })
-
-    _handleShowConfirm = () =>
-        this.setState({
-            showConfirm: !this.state.showConfirm
-        })
 
     _closeBaseDialog = () => {
         this.props.resetDialog('base')
@@ -36,7 +23,7 @@ export default class RegisterCard extends Component {
             this.props.history.push('/dashboard')
     }
 
-    _submitRegisterAccount = async (values, actions) => {
+    _submitRegisterAccount = async (values) => {
         await this.props.register(
             values.name,
             values.email,
@@ -87,21 +74,7 @@ export default class RegisterCard extends Component {
                                             name: 'Test'
                                         }}
                                         render={(props) => (
-                                            <RegisterForm
-                                                {...props}
-                                                handleShowPassword={
-                                                    this._handleShowPassword
-                                                }
-                                                showPassword={
-                                                    this.state.showPassword
-                                                }
-                                                showConfirm={
-                                                    this.state.showConfirm
-                                                }
-                                                handleShowConfirm={
-                                                    this._handleShowConfirm
-                                                }
-                                            />
+                                            <RegisterForm {...props} />
                                         )}
                                     />
                                     <Row className='justify-content-md-center'>

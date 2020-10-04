@@ -13,15 +13,9 @@ export default class LoginCard extends Component {
         super(props)
         this.state = {
             email: '',
-            password: '',
-            showPassword: false
+            password: ''
         }
     }
-
-    _handleShowPassword = () =>
-        this.setState({
-            showPassword: !this.state.showPassword
-        })
 
     _didLogin = (loginType, prevProps) =>
         prevProps.status[loginType].loading &&
@@ -35,7 +29,7 @@ export default class LoginCard extends Component {
             this.props.history.push('/dashboard')
     }
 
-    _submitAddAccount = async (values, actions) => {
+    _submitAddAccount = async (values) => {
         await this.props.login(values.email, values.password)
     }
 
@@ -81,22 +75,14 @@ export default class LoginCard extends Component {
                                             password: 'test1234'
                                         }}
                                         render={(props) => (
-                                            <LoginForm
-                                                {...props}
-                                                handleShowPassword={
-                                                    this._handleShowPassword
-                                                }
-                                                showPassword={
-                                                    this.state.showPassword
-                                                }
-                                            />
+                                            <LoginForm {...props} />
                                         )}
                                     />
 
                                     <Row className='justify-content-md-center'>
                                         <Col>
                                             <p className='go-to-register'>
-                                                Don\'t have an account?{' '}
+                                                Don't have an account?{' '}
                                                 <a href='/register'>
                                                     Register here
                                                 </a>

@@ -10,7 +10,6 @@ class NavBar extends Component {
     _getLink = (name, url) => <Nav.Link href={url}>{name}</Nav.Link>
 
     render() {
-        console.log(this.props.url)
         return (
             <Navbar
                 sticky='top'
@@ -19,10 +18,10 @@ class NavBar extends Component {
                 bg='transparent'
                 variant='dark'
             >
-                <Navbar.Brand href='#home'>TpConnects</Navbar.Brand>
+                <Navbar.Brand href='/'>TpConnects</Navbar.Brand>
                 <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                 <Navbar.Collapse id='responsive-navbar-nav'>
-                    <Nav className='mr-auto'/>
+                    <Nav className='mr-auto' />
                     <Nav activeKey={this.props.url}>
                         {!tokenHandler.isLoggedIn() &&
                             this._getLink('Login', 'login')}
