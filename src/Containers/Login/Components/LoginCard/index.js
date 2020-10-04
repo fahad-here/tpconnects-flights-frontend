@@ -77,7 +77,7 @@ export default class LoginCard extends Component {
                                         validationSchema={LoginYup}
                                         onSubmit={this._submitAddAccount}
                                         initialValues={{
-                                            email: 'fmohajir@gmail.com',
+                                            email: 'test@admin.com',
                                             password: 'test1234'
                                         }}
                                         render={(props) => (
