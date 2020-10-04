@@ -7,6 +7,7 @@ import Login from './Containers/Login/LoginContainer'
 import NonLoggedInRoute from './Routes/NonLoggedInRoute'
 import LoggedInRoute from './Routes/LoggedInRoute'
 import Register from './Containers/Register/RegisterContainer'
+import Logout from './Utils/FormValidationSchemas/Logout'
 
 function App() {
     return (
@@ -20,7 +21,8 @@ function App() {
                         path='/register'
                         component={Register}
                     />
-                    {/*<LoggedInRoute exact component={Home} />*/}
+                    <LoggedInRoute path='/dashboard' exact component={Home} />
+                    <LoggedInRoute path='/logout' exact component={Logout} />
                     <Route exact path='*' render={() => <Redirect to='/' />} />
                 </Switch>
             </BrowserRouter>

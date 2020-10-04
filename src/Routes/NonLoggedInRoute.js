@@ -7,17 +7,18 @@ export default function NonLoggedInRoute({ component: Component, ...rest }) {
             {...rest}
             render={(props) => {
                 if (localStorage.getItem('token') === null) {
+                    console.log('test')
                     const view =
                         props.location.pathname === '/'
                             ? '/login'
                             : props.location.pathname
                     return <Component view={view} {...props} />
                 } else {
-                    // Redirect to landing
+                    // Redirect to dashboard
                     return (
                         <Redirect
                             to={{
-                                pathname: '/',
+                                pathname: '/dashboard',
                                 state: { from: props.location }
                             }}
                         />

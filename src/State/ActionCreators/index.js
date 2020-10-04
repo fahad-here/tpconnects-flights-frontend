@@ -36,14 +36,15 @@ export const login = (email, password) => {
     }
 }
 
-export const register = (name, email, password) => {
+export const register = (name, email, password, role) => {
     return async (dispatch) => {
         dispatch({ type: REGISTER_LOADING })
         try {
             const { token, refreshToken } = await api.register(
                 name,
                 email,
-                password
+                password,
+                role
             )
             tokenHandler.set(token)
             tokenHandler.setRefresh(refreshToken)

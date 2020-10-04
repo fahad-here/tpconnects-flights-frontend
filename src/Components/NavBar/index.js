@@ -15,11 +15,6 @@ class NavBar extends Component {
 
     _getLink = (name, url) => <Nav.Link href={url}>{name}</Nav.Link>
 
-    _logout = () => {
-        tokenHandler.logout()
-        this.props.history.push('/')
-    }
-
     render() {
         return (
             <Navbar
@@ -41,7 +36,7 @@ class NavBar extends Component {
                         {tokenHandler.isLoggedIn() && (
                             <>
                                 {this._getLink('Dashboard', 'dashboard')}
-                                {this._getLink('Logout', URL_LOGOUT)}
+                                {this._getLink('Logout', 'logout')}
                             </>
                         )}
                     </Nav>

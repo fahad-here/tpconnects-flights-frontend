@@ -38,7 +38,12 @@ export default class RegisterCard extends Component {
     }
 
     _submitRegisterAccount = async (values, actions) => {
-        await this.props.register(values.name, values.email, values.password)
+        await this.props.register(
+            values.name,
+            values.email,
+            values.password,
+            values.role
+        )
     }
 
     componentDidMount() {
@@ -65,7 +70,7 @@ export default class RegisterCard extends Component {
                                 <Card.Body className='card-inner'>
                                     <Formik
                                         validationSchema={RegisterYup}
-                                        onSubmit={console.log}
+                                        onSubmit={this._submitRegisterAccount}
                                         initialValues={{
                                             email: 'fmohajir@gmail.com',
                                             password: 'test1234',

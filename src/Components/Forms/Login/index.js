@@ -13,10 +13,6 @@ const Login = (props) => {
         isValid,
         errors
     } = props
-    console.log(values)
-    console.log(errors)
-    console.log(isValid)
-    console.log(errors.password)
     return (
         <Form noValidate onSubmit={handleSubmit}>
             <Form.Group as={Col} md='12' controlId='email'>

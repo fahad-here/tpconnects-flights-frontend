@@ -7,12 +7,16 @@ import Footer from '../../Components/Footer'
 import Cover from './Components/Cover'
 import GetStarted from './Components/GetStarted'
 
-class Home extends Component {
-    componentDidMount = async () => {}
+import TokenHandler from '../../Utils/TokenHandler'
 
+const tokenHandler = new TokenHandler()
+
+class Home extends Component {
+    componentDidMount = async () => {
+        if (tokenHandler.isLoggedIn()) await this.props.getUser()
+        else tokenHandler.logout()
+    }
     render() {
-        console.log(this.props)
-        console.log(this.props.history)
         return (
             <Container fluid className='home'>
                 <NavBar {...this.props} />
