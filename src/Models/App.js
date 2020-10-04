@@ -24,7 +24,18 @@ export const App = {
             loading: false,
             error: false,
             errorMessage: null
+        },
+        getFlights: {
+            loading: false,
+            error: false,
+            errorMessage: null
+        },
+        addNewFlight: {
+            loading: false,
+            error: false,
+            errorMessage: null
         }
     },
-    user: null
+    user: null,
+    flights: []
 }

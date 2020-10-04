@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 import Home from './Containers/Home/HomeContainer'
 import Login from './Containers/Login/LoginContainer'
+import Dashboard from './Containers/Dashboard/DashboardContainer'
 
 import NonLoggedInRoute from './Routes/NonLoggedInRoute'
 import LoggedInRoute from './Routes/LoggedInRoute'
@@ -21,7 +22,11 @@ function App() {
                         path='/register'
                         component={Register}
                     />
-                    <LoggedInRoute path='/dashboard' exact component={Home} />
+                    <LoggedInRoute
+                        path='/dashboard'
+                        exact
+                        component={Dashboard}
+                    />
                     <LoggedInRoute path='/logout' exact component={Logout} />
                     <Route exact path='*' render={() => <Redirect to='/' />} />
                 </Switch>

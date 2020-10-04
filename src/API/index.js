@@ -9,6 +9,7 @@ const tokenHandler = new TokenHandler()
 
 const BASE_API_URL = `${BASE_URL}/api`
 const URL_USERS = `${BASE_API_URL.replace('$PORT', API_PORT)}/users`
+const URL_FLIGHTS = `${BASE_API_URL.replace('$PORT', API_PORT)}/flights`
 const URL_AUTH = `${URL_USERS}/auth`
 
 axios.interceptors.request.use(RefreshAccessToken, Promise.reject)

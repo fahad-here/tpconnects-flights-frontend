@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import AirportData from '../../../../air.json'
 import './register-card.scss'
 import { Formik } from 'formik'
 import FormValidationSchemas from '../../../../Utils/FormValidationSchemas'
 import RegisterForm from '../../../../Components/Forms/Register'
-import { Card, Col, Container, Row } from 'react-bootstrap'
+import { Button, Card, Col, Container, Modal, Row } from 'react-bootstrap'
 const { RegisterYup } = FormValidationSchemas
 
 export default class RegisterCard extends Component {
@@ -33,7 +32,7 @@ export default class RegisterCard extends Component {
 
     _closeBaseDialog = () => {
         this.props.resetDialog('base')
-        if (!this.props.app.status.register.error)
+        if (!this.props.status.register.error)
             this.props.history.push('/dashboard')
     }
 
@@ -46,18 +45,28 @@ export default class RegisterCard extends Component {
         )
     }
 
-    componentDidMount() {
-        let x = AirportData.filter((data) =>
-            data.iata
-                ? data.iata.toLowerCase().includes('DXB'.toLowerCase())
-                : false
-        )
-        console.log(x)
-    }
-
     render() {
         return (
             <Container maxWidth='md'>
+                <Modal
+                    show={this.props.dialogs.base.open}
+                    onHide={this._closeBaseDialog}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            {this.props.dialogs.base.title}
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>{this.props.dialogs.base.message}</Modal.Body>
+                    <Modal.Footer>
+                        <Button
+                            variant='secondary'
+                            onClick={this._closeBaseDialog}
+                        >
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
                 <div className='register-card'>
                     <Row>
                         <Col xs={12}>
@@ -72,7 +81,7 @@ export default class RegisterCard extends Component {
                                         validationSchema={RegisterYup}
                                         onSubmit={this._submitRegisterAccount}
                                         initialValues={{
-                                            email: 'fmohajir@gmail.com',
+                                            email: 'test@admin.com',
                                             password: 'test1234',
                                             role: 'Manager',
                                             name: 'Test'
