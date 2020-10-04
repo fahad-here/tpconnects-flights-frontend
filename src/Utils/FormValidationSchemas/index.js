@@ -1,9 +1,11 @@
 import { LoginYup } from './Login'
 import { RegisterYup } from './Register'
+import { FlightYup } from './Flight'
 
 const FormValidationSchemas = {
     LoginYup,
-    RegisterYup
+    RegisterYup,
+    FlightYup
 }
 
 export default FormValidationSchemas
