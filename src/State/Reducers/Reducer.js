@@ -1,5 +1,8 @@
 import { App } from '../../Models'
 import {
+    GET_FLIGHTS_ERROR,
+    GET_FLIGHTS_LOADING,
+    GET_FLIGHTS_SUCCESS,
     GET_USER_ERROR,
     GET_USER_LOADING,
     GET_USER_SUCCESS,
@@ -154,6 +157,45 @@ export default function Reducer(state = App, action) {
                     }
                 },
                 user: null
+            }
+        case GET_FLIGHTS_LOADING:
+            return {
+                ...state,
+                status: {
+                    ...state.status,
+                    getFlights: {
+                        loading: true,
+                        error: false,
+                        errorMessage: null
+                    }
+                },
+                flights: []
+            }
+        case GET_FLIGHTS_SUCCESS:
+            return {
+                ...state,
+                status: {
+                    ...state.status,
+                    getFlights: {
+                        loading: false,
+                        error: false,
+                        errorMessage: null
+                    }
+                },
+                flights: action.payload
+            }
+        case GET_FLIGHTS_ERROR:
+            return {
+                ...state,
+                status: {
+                    ...state.status,
+                    getFlights: {
+                        loading: false,
+                        error: true,
+                        errorMessage: action.payload.message
+                    }
+                },
+                flights: []
             }
         case RESET_DIALOG:
             return {

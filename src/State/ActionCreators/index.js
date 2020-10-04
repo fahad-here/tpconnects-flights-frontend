@@ -1,6 +1,9 @@
 import API from '../../API'
 import TokenHandler from '../../Utils/TokenHandler'
 import {
+    GET_FLIGHTS_ERROR,
+    GET_FLIGHTS_LOADING,
+    GET_FLIGHTS_SUCCESS,
     GET_USER_ERROR,
     GET_USER_LOADING,
     GET_USER_SUCCESS,
@@ -73,6 +76,24 @@ export const getUser = () => {
         } catch (e) {
             return dispatch({
                 type: GET_USER_ERROR,
+                payload: e
+            })
+        }
+    }
+}
+
+export const getFlights = () => {
+    return async (dispatch) => {
+        dispatch({ type: GET_FLIGHTS_LOADING })
+        try {
+            const { flights } = await api.getFlights()
+            return dispatch({
+                type: GET_FLIGHTS_SUCCESS,
+                payload: flights
+            })
+        } catch (e) {
+            return dispatch({
+                type: GET_FLIGHTS_ERROR,
                 payload: e
             })
         }

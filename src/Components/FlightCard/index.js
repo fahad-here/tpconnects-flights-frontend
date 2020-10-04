@@ -43,8 +43,12 @@ export default class FlightCard extends Component {
                         xs={12}
                         className='small-departure-holder'
                     >
-                        <Row>
-                            {origin}->{destination}
+                        <Row className='justify-content-sm-center'>
+                            <p>
+                                <strong>
+                                    {origin}->{destination}
+                                </strong>
+                            </p>
                         </Row>
                         <Row>
                             <p>
