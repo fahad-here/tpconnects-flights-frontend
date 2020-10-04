@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import AirportData from '../../../../air.json'
 import './register-card.scss'
 import { Formik } from 'formik'
 import FormValidationSchemas from '../../../../Utils/FormValidationSchemas'
@@ -40,6 +40,15 @@ export default class RegisterCard extends Component {
 
     _submitRegisterAccount = async (values, actions) => {
         await this.props.register(values.name, values.email, values.password)
+    }
+
+    componentDidMount() {
+        let x = AirportData.filter((data) =>
+            data.iata
+                ? data.iata.toLowerCase().includes('DXB'.toLowerCase())
+                : false
+        )
+        console.log(x)
     }
 
     render() {
