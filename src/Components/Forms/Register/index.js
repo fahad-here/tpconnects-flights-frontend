@@ -76,8 +76,12 @@ const Register = (props) => {
                     {errors.name}
                 </Form.Control.Feedback>
             </Form.Group>
-            <Button className='btn btn-register' type='submit'>
-                Register
+            <Button
+                className='btn btn-register'
+                type='submit'
+                disabled={isSubmitting}
+            >
+                {isSubmitting ? 'Loading...' : 'Register'}
             </Button>
         </Form>
     )
