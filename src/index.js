@@ -7,7 +7,9 @@ import promiseMiddleware from 'redux-promise-middleware'
 import './App.scss'
 import App from './App'
 import reducers from './State/Reducers'
-
+import 'react-virtualized-select/node_modules/react-select/dist/react-select.css'
+import 'react-virtualized-select/styles.css'
+import 'react-datetime/css/react-datetime.css'
 let store = createStore(reducers, applyMiddleware(thunk, promiseMiddleware()))
 
 ReactDOM.render(

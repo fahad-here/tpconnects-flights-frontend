@@ -9,7 +9,8 @@ import {
     LOGIN_SUCCESS,
     REGISTER_ERROR,
     REGISTER_LOADING,
-    REGISTER_SUCCESS
+    REGISTER_SUCCESS,
+    RESET_DIALOG
 } from '../ActionTypes'
 
 const api = new API()
@@ -74,5 +75,14 @@ export const getUser = () => {
                 payload: e
             })
         }
+    }
+}
+
+export const resetDialog = (dialogName) => {
+    return (dispatch) => {
+        dispatch({
+            type: RESET_DIALOG,
+            payload: dialogName
+        })
     }
 }

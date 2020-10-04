@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Col, FormControl, Form } from 'react-bootstrap'
+import { Button, Col, Form } from 'react-bootstrap'
 
 const { Control } = Form
 const Login = (props) => {
@@ -49,8 +49,12 @@ const Login = (props) => {
                     {errors.password}
                 </Form.Control.Feedback>
             </Form.Group>
-            <Button className='btn btn-login' type='submit'>
-                Login
+            <Button
+                className='btn btn-login'
+                type='submit'
+                disabled={isSubmitting}
+            >
+                {isSubmitting ? 'Loading...' : 'Login'}
             </Button>
         </Form>
     )

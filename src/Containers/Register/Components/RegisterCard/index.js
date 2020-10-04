@@ -5,7 +5,6 @@ import { Formik } from 'formik'
 import FormValidationSchemas from '../../../../Utils/FormValidationSchemas'
 import RegisterForm from '../../../../Components/Forms/Register'
 import { Card, Col, Container, Row } from 'react-bootstrap'
-
 const { RegisterYup } = FormValidationSchemas
 
 export default class RegisterCard extends Component {

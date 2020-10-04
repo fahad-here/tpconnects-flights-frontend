@@ -13,7 +13,7 @@ export default class Login extends Component {
             <div className='login'>
                 <NavBar url='login' />
                 <Cover />
-                <LoginCard />
+                <LoginCard {...this.props} />
                 <Footer url='login' />
             </div>
         )

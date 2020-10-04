@@ -4,7 +4,7 @@ import './login-card.scss'
 import FormValidationSchemas from '../../../../Utils/FormValidationSchemas'
 import { Formik } from 'formik'
 import LoginForm from '../../../../Components/Forms/Login'
-import { Card, Col, Container, Row } from 'react-bootstrap'
+import { Button, Card, Col, Container, Modal, Row } from 'react-bootstrap'
 
 const { LoginYup } = FormValidationSchemas
 
@@ -24,9 +24,9 @@ export default class LoginCard extends Component {
         })
 
     _didLogin = (loginType, prevProps) =>
-        prevProps.app.status[loginType].loading &&
-        !this.props.app.status[loginType].loading &&
-        !this.props.app.status[loginType].error
+        prevProps.status[loginType].loading &&
+        !this.props.status[loginType].loading &&
+        !this.props.status[loginType].error
 
     _didLoadSuccessfully = (prevProps) => this._didLogin('login', prevProps)
 
@@ -35,14 +35,34 @@ export default class LoginCard extends Component {
             this.props.history.push('/dashboard')
     }
 
-    _submitAddAccount = async (values, actions) =>
+    _submitAddAccount = async (values, actions) => {
         await this.props.login(values.email, values.password)
+    }
 
     _closeBaseDialog = () => this.props.resetDialog('base')
 
     render() {
         return (
             <Container maxWidth='md'>
+                <Modal
+                    show={this.props.dialogs.base.open}
+                    onHide={this._closeBaseDialog}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            {this.props.dialogs.base.title}
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>{this.props.dialogs.base.message}</Modal.Body>
+                    <Modal.Footer>
+                        <Button
+                            variant='secondary'
+                            onClick={this._closeBaseDialog}
+                        >
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
                 <div className='login-card'>
                     <Row>
                         <Col xs={12}>
@@ -55,7 +75,7 @@ export default class LoginCard extends Component {
                                 <Card.Body className='card-inner'>
                                     <Formik
                                         validationSchema={LoginYup}
-                                        onSubmit={console.log}
+                                        onSubmit={this._submitAddAccount}
                                         initialValues={{
                                             email: 'fmohajir@gmail.com',
                                             password: 'test1234'

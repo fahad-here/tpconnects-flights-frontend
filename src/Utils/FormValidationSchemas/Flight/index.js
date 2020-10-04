@@ -16,5 +16,8 @@ export const FlightYup = yup.object().shape({
     departure: yup
         .date('Please select a date and time')
         .required('Date and time are required'),
-    cost: yup.number('Please enter the cost').required('Cost is required')
+    cost: yup
+        .number('Please enter the cost')
+        .positive("Cost can't be negative")
+        .required('Cost is required')
 })

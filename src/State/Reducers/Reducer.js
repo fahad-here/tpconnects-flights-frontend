@@ -8,7 +8,8 @@ import {
     LOGIN_SUCCESS,
     REGISTER_ERROR,
     REGISTER_LOADING,
-    REGISTER_SUCCESS
+    REGISTER_SUCCESS,
+    RESET_DIALOG
 } from '../ActionTypes'
 
 export default function Reducer(state = App, action) {
@@ -153,6 +154,16 @@ export default function Reducer(state = App, action) {
                     }
                 },
                 user: null
+            }
+        case RESET_DIALOG:
+            return {
+                ...state,
+                dialogs: {
+                    ...state.dialogs,
+                    [action.payload]: {
+                        ...App.dialogs[action.payload]
+                    }
+                }
             }
         default:
             return state

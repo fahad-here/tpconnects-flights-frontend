@@ -59,7 +59,7 @@ const Register = (props) => {
                     {errors.password}
                 </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group controlId='role'>
+            <Form.Group as={Col} md='12' controlId='role'>
                 <Form.Label>Role</Form.Label>
                 <Form.Control
                     as='select'
