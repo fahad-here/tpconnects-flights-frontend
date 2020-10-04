@@ -34,6 +34,11 @@ export const App = {
             loading: false,
             error: false,
             errorMessage: null
+        },
+        deleteFlight: {
+            loading: false,
+            error: false,
+            errorMessage: null
         }
     },
     user: null,

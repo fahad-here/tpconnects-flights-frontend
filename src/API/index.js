@@ -73,6 +73,17 @@ export default class API {
         return (await axios.post(URL, body, options)).data
     }
 
+    async deleteFlight(id) {
+        const URL = `${URL_FLIGHTS}/${id}`
+
+        const options = {
+            headers: {
+                Authorization: tokenHandler.get().token
+            }
+        }
+        return (await axios.delete(URL, options)).data
+    }
+
     async refreshAccess() {
         const URL = `${URL_AUTH}/refresh`
         const options = {

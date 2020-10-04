@@ -4,6 +4,9 @@ import {
     ADD_NEW_FLIGHT_ERROR,
     ADD_NEW_FLIGHT_LOADING,
     ADD_NEW_FLIGHT_SUCCESS,
+    DELETE_FLIGHT_ERROR,
+    DELETE_FLIGHT_LOADING,
+    DELETE_FLIGHT_SUCCESS,
     GET_FLIGHTS_ERROR,
     GET_FLIGHTS_LOADING,
     GET_FLIGHTS_SUCCESS,
@@ -129,6 +132,27 @@ export const newFlight = (
         } catch (e) {
             return dispatch({
                 type: ADD_NEW_FLIGHT_ERROR,
+                payload: e
+            })
+        }
+    }
+}
+
+export const deleteFlight = (id) => {
+    return async (dispatch) => {
+        dispatch({ type: DELETE_FLIGHT_LOADING })
+        try {
+            const response = await api.deleteFlight(id)
+            return dispatch({
+                type: DELETE_FLIGHT_SUCCESS,
+                payload: {
+                    ...response,
+                    id
+                }
+            })
+        } catch (e) {
+            return dispatch({
+                type: DELETE_FLIGHT_ERROR,
                 payload: e
             })
         }

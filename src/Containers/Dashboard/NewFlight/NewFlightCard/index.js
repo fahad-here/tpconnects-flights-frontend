@@ -22,7 +22,7 @@ export default class NewFlightCard extends Component {
 
     _closeBaseDialog = () => {
         this.props.resetDialog('base')
-        if (!this.props.status.register.error)
+        if (!this.props.status.addNewFlight.error)
             this.props.history.push('/dashboard')
     }
 

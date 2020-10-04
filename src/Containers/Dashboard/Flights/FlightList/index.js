@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import TokenHandler from '../../../../Utils/TokenHandler'
-import { Button, Col, Container, ListGroup, Row } from 'react-bootstrap'
+import { Button, Col, Container, ListGroup, Modal, Row } from 'react-bootstrap'
 import FlightCard from '../../../../Components/FlightCard'
 import './flight-list.scss'
+
 const tokenHandler = new TokenHandler()
 
 export default class FlightList extends Component {
@@ -11,10 +12,39 @@ export default class FlightList extends Component {
         else tokenHandler.logout()
     }
 
+    _onDelete = (id) => {
+        this.props.deleteFlight(id)
+    }
+
+    _closeBaseDialog = () => {
+        this.props.resetDialog('base')
+        if (!this.props.status.deleteFlight.error)
+            this.props.history.push('/dashboard')
+    }
+
     render() {
         const { flights } = this.props
         return (
             <Container maxWidth='md'>
+                <Modal
+                    show={this.props.dialogs.base.open}
+                    onHide={this._closeBaseDialog}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            {this.props.dialogs.base.title}
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>{this.props.dialogs.base.message}</Modal.Body>
+                    <Modal.Footer>
+                        <Button
+                            variant='secondary'
+                            onClick={this._closeBaseDialog}
+                        >
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
                 <div className='flights-card'>
                     <Row>
                         <Col xs={12}>
@@ -53,6 +83,8 @@ export default class FlightList extends Component {
                                             <FlightCard
                                                 key={flight._id}
                                                 flightDetails={flight}
+                                                onDelete={this._onDelete}
+                                                {...this.props}
                                             />
                                         )
                                     })}

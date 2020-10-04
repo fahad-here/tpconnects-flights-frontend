@@ -84,11 +84,12 @@ export default class FlightCard extends Component {
                 <Row>
                     <Col md={{ offset: 10, number: 2 }}>
                         <Button
-                            onClick={() => {
-                                console.log(`delete ${_id}`)
-                            }}
+                            onClick={() => this.props.onDelete(_id)}
+                            disabled={this.props.deleteFlight.loading}
                         >
-                            Delete
+                            {this.props.deleteFlight.loading
+                                ? 'Loading...'
+                                : 'Delete'}
                         </Button>
                     </Col>
                 </Row>

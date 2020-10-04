@@ -3,6 +3,9 @@ import {
     ADD_NEW_FLIGHT_ERROR,
     ADD_NEW_FLIGHT_LOADING,
     ADD_NEW_FLIGHT_SUCCESS,
+    DELETE_FLIGHT_ERROR,
+    DELETE_FLIGHT_LOADING,
+    DELETE_FLIGHT_SUCCESS,
     GET_FLIGHTS_ERROR,
     GET_FLIGHTS_LOADING,
     GET_FLIGHTS_SUCCESS,
@@ -17,6 +20,13 @@ import {
     REGISTER_SUCCESS,
     RESET_DIALOG
 } from '../ActionTypes'
+
+const _deleteFromArrayById = (oldArray, deleteItemId) => {
+    const indexFind = oldArray.findIndex(
+        (arrayItem) => arrayItem._id === deleteItemId
+    )
+    return [...oldArray.slice(0, indexFind), ...oldArray.slice(indexFind + 1)]
+}
 
 export default function Reducer(state = App, action) {
     switch (action.type) {
@@ -273,6 +283,71 @@ export default function Reducer(state = App, action) {
                         loading: false,
                         error: true,
                         errorMessage: action.payload.message
+                    }
+                }
+            }
+        case DELETE_FLIGHT_LOADING:
+            return {
+                ...state,
+                status: {
+                    ...state.status,
+                    deleteFlight: {
+                        loading: true,
+                        error: false,
+                        errorMessage: null
+                    }
+                }
+            }
+        case DELETE_FLIGHT_SUCCESS:
+            return {
+                ...state,
+                dialogs: {
+                    ...state.dialogs,
+                    base: {
+                        open: true,
+                        title: 'Delete result',
+                        message: action.payload.response
+                            ? action.payload.response.data.message
+                            : action.payload.message,
+                        htmlMessage: null,
+                        loading: false,
+                        loadingMessage: false
+                    }
+                },
+                status: {
+                    ...state.status,
+                    deleteFlight: {
+                        loading: false,
+                        error: false,
+                        errorMessage: null
+                    }
+                },
+                flights: _deleteFromArrayById(state.flights, action.payload.id)
+            }
+        case DELETE_FLIGHT_ERROR:
+            return {
+                ...state,
+                dialogs: {
+                    ...state.dialogs,
+                    base: {
+                        open: true,
+                        title: 'Error deleting flight',
+                        message: action.payload.response
+                            ? action.payload.response.data.message
+                            : action.payload.message,
+                        htmlMessage: null,
+                        loading: false,
+                        loadingMessage: false
+                    }
+                },
+                status: {
+                    ...state.status,
+                    deleteFlight: {
+                        loading: false,
+                        error: true,
+                        errorMessage: action.payload.response
+                            ? action.payload.response.data.message
+                            : action.payload.message
                     }
                 }
             }
