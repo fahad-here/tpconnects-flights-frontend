@@ -19,6 +19,7 @@ export default class RegisterCard extends Component {
 
     _closeBaseDialog = () => {
         this.props.resetDialog('base')
+        console.log(this.props.status.register.error)
         if (!this.props.status.register.error)
             this.props.history.push('/dashboard')
     }
@@ -68,7 +69,7 @@ export default class RegisterCard extends Component {
                                         validationSchema={RegisterYup}
                                         onSubmit={this._submitRegisterAccount}
                                         initialValues={{
-                                            email: 'test@admin.com',
+                                            email: 'superadmin@test.com',
                                             password: 'test1234',
                                             role: 'Manager',
                                             name: 'Test'

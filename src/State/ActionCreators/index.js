@@ -49,7 +49,7 @@ export const register = (name, email, password, role) => {
     return async (dispatch) => {
         dispatch({ type: REGISTER_LOADING })
         try {
-            const { token, refreshToken } = await api.register(
+            const { token, refreshToken, message } = await api.register(
                 name,
                 email,
                 password,
@@ -59,7 +59,7 @@ export const register = (name, email, password, role) => {
             tokenHandler.setRefresh(refreshToken)
             return dispatch({
                 type: REGISTER_SUCCESS,
-                payload: { token, refreshToken }
+                payload: { token, refreshToken, message }
             })
         } catch (e) {
             return dispatch({
