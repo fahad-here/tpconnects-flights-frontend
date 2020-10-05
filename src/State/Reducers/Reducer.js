@@ -96,6 +96,19 @@ export default function Reducer(state = App, action) {
         case REGISTER_SUCCESS:
             return {
                 ...state,
+                dialogs: {
+                    ...state.dialogs,
+                    base: {
+                        open: true,
+                        title: 'Registration result',
+                        message: action.payload.response
+                            ? action.payload.response.data.message
+                            : action.payload.message,
+                        htmlMessage: null,
+                        loading: false,
+                        loadingMessage: false
+                    }
+                },
                 status: {
                     ...state.status,
                     register: {
